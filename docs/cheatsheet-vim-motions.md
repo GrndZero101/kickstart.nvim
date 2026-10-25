@@ -52,4 +52,4 @@ Motions move the cursor, and also pick the text an operator acts on (`d3w`, `y}`
 > `f` and `t` are the fastest way to cross a line: `dt)` deletes up to `)`, `cf,` changes through the comma. See `cheatsheet-vim-change.md`. Help: `:help motion.txt`.
 
 > [!TIP]
-> Precognition shows where `w`, `b`, `e`, `^`, `$` and `%` would land, on a faint line under the cursor. The gutter shows `gg`, `G`, `{` and `}`. Toggle it with `<leader>tp`, and turn it off once the motions are automatic.
+> Precognition is hidden at startup. Press `<leader>tp` to show where motions would land, and press it again to hide them. Letters on a faint line under the cursor mark `w`, `b`, `e`, `0`, `^`, `$` and `%`. Capital `F` and lowercase `f` and `t` mark character jumps. The gutter shows `gg`, `G`, `{` and `}`.

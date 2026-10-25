@@ -5,7 +5,9 @@
 -- The gutter marks gg, G, { and }. Turn it off once the motions are automatic.
 
 vim.pack.add { 'https://github.com/tris203/precognition.nvim' }
-require('precognition').setup {} -- defaults: visible at startup
+require('precognition').setup {
+  startVisible = false, -- hidden until <leader>tp; the hints are busy to have on all the time
+}
 
 vim.keymap.set('n', '<leader>tp', function()
   if require('precognition').toggle() then
