@@ -22,6 +22,7 @@ Plugin: `yazi.nvim` via `lua/custom/plugins/yazi.lua`, running Yazi in a floatin
 | `<C-o>`               | Open and pick the target window                      |
 | `<Tab>`               | Jump the cursor between files open in Neovim buffers |
 | `<C-s>`               | Telescope live grep in the hovered directory         |
+| `<C-g>`               | Find and replace in the hovered directory (grug-far) |
 | `<C-y>`               | Copy relative path of selected files                 |
 | `<C-q>`               | Send selected files to the quickfix list             |
 | `<C-\>`               | Set Neovim's working directory to Yazi's directory   |
@@ -98,5 +99,5 @@ Plugin: `yazi.nvim` via `lua/custom/plugins/yazi.lua`, running Yazi in a floatin
 
 > [!NOTE]
 > `l`, `f`, `F` and `!` are personal overrides in `%APPDATA%\yazi\config\keymap.toml`. Yazi's defaults are `l` enter directory only, `f` filter, and no `!` or `F`.
-> The `<C-g>` replace-in-directory key does nothing, because it needs `grug-far.nvim`, which is not installed.
+> `<C-g>` opens grug-far. See `docs/cheatsheet-nvim-grug-far.md`.
 > The `<leader>` key is Space. There is no `:help` page. See <https://github.com/mikavilpas/yazi.nvim> and <https://yazi-rs.github.io/docs/quick-start>.
