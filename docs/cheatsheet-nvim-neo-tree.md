@@ -1,6 +1,6 @@
 # Cheatsheet: File Manager (neo-tree)
 
-Plugin: `neo-tree.nvim` via `lua/kickstart/plugins/neo-tree.lua`. Press `?` inside the tree for the full list.
+Plugin: `neo-tree.nvim` via `lua/custom/plugins/neo-tree.lua`. Press `?` inside the tree for the full list.
 
 ## Open / close (normal mode)
 
