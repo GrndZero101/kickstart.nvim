@@ -99,7 +99,7 @@ do
   vim.g.maplocalleader = ' '
 
   -- Set to true if you have a Nerd Font installed and selected in the terminal
-  vim.g.have_nerd_font = false
+  vim.g.have_nerd_font = true
 
   -- [[ Setting options ]]
   --  See `:help vim.o`
@@ -110,7 +110,7 @@ do
   vim.o.number = true
   -- You can also add relative line numbers, to help with jumping.
   --  Experiment for yourself to see if you like it!
-  -- vim.o.relativenumber = true
+  vim.o.relativenumber = true
 
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
@@ -744,6 +744,16 @@ do
     -- But for many setups, the LSP (`rust_analyzer`) will work just fine
     -- rust_analyzer = {},
 
+    -- Python. Mason installs these two with pip, so they need a real Python on PATH.
+    basedpyright = {}, -- types, completion, go-to-definition
+    ruff = {}, -- linting and formatting
+
+    bashls = { filetypes = { 'sh', 'bash', 'zsh' } }, -- bashls ignores zsh by default
+    marksman = {}, -- Markdown links, headings and references
+    jsonls = {},
+    yamlls = {},
+    taplo = {}, -- TOML
+
     stylua = {}, -- Used to format Lua code
 
     -- Special Lua Config, as recommended by neovim help docs
@@ -804,6 +814,9 @@ do
   local ensure_installed = vim.tbl_keys(servers or {})
   vim.list_extend(ensure_installed, {
     -- You can add other tools here that you want Mason to install
+    'shellcheck', -- used by bashls for shell diagnostics
+    'shfmt', -- shell formatter (conform)
+    'prettier', -- Markdown formatter (conform); marksman cannot format
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -826,8 +839,14 @@ do
     format_on_save = function(bufnr)
       -- You can specify filetypes to autoformat on save here:
       local enabled_filetypes = {
-        -- lua = true,
-        -- python = true,
+        lua = true,
+        python = true,
+        sh = true,
+        bash = true,
+        markdown = true,
+        json = true,
+        yaml = true,
+        toml = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -846,6 +865,12 @@ do
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      python = { 'ruff_format', 'ruff_organize_imports' },
+      sh = { 'shfmt' },
+      bash = { 'shfmt' },
+      markdown = { 'prettier' },
+      -- zsh: shfmt does not support it, so no formatter is configured
+      -- lua uses the stylua LSP, and json/yaml/toml use their LSPs (lsp_format = 'fallback')
     },
   }
 
@@ -911,11 +936,11 @@ do
     completion = {
       -- By default, you may press `<c-space>` to show the documentation.
       -- Optionally, set `auto_show = true` to show the documentation after a delay.
-      documentation = { auto_show = false, auto_show_delay_ms = 500 },
+      documentation = { auto_show = true, auto_show_delay_ms = 500 },
     },
 
     sources = {
-      default = { 'lsp', 'path', 'snippets' },
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
     },
 
     snippets = { preset = 'luasnip' },
@@ -1018,12 +1043,12 @@ do
   -- require 'kickstart.plugins.indent_line'
   -- require 'kickstart.plugins.lint'
   -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
+  -- require 'kickstart.plugins.neo-tree' -- replaced by lua/custom/plugins/neo-tree.lua
 
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
   --
   -- For independent modules, uncomment the convenience loader:
-  -- require 'custom.plugins'
+  require 'custom.plugins'
   --
   -- `custom.plugins` automatically loads files from that directory, but their
   -- order is unspecified. If plugins depend on each other, keep them in the same
