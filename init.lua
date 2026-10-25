@@ -750,8 +750,16 @@ do
 
     bashls = { filetypes = { 'sh', 'bash', 'zsh' } }, -- bashls ignores zsh by default
     marksman = {}, -- Markdown links, headings and references
-    jsonls = {},
-    yamlls = {},
+    -- JSON and YAML schemas from SchemaStore.nvim (GitHub Actions, docker-compose, Kubernetes, package.json, ...).
+    -- Loaded in before_init because the plugin is only installed further down, with nvim-lspconfig.
+    jsonls = {
+      settings = { json = { validate = { enable = true } } },
+      before_init = function(_, config) config.settings.json.schemas = require('schemastore').json.schemas() end,
+    },
+    yamlls = {
+      settings = { yaml = { schemaStore = { enable = false, url = '' } } }, -- use SchemaStore.nvim's list instead
+      before_init = function(_, config) config.settings.yaml.schemas = require('schemastore').yaml.schemas() end,
+    },
     taplo = {}, -- TOML
 
     stylua = {}, -- Used to format Lua code
@@ -794,6 +802,7 @@ do
     gh 'mason-org/mason.nvim',
     gh 'mason-org/mason-lspconfig.nvim',
     gh 'WhoIsSethDaniel/mason-tool-installer.nvim',
+    gh 'b0o/SchemaStore.nvim', -- JSON/YAML schemas for jsonls and yamlls
   }
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -817,6 +826,7 @@ do
     'shellcheck', -- used by bashls for shell diagnostics
     'shfmt', -- shell formatter (conform)
     'prettier', -- Markdown formatter (conform); marksman cannot format
+    'markdownlint', -- Markdown linter (kickstart.plugins.lint)
   })
 
   require('mason-tool-installer').setup { ensure_installed = ensure_installed }
@@ -893,8 +903,8 @@ do
   --    See the README about individual language/framework/plugin snippets:
   --    https://github.com/rafamadriz/friendly-snippets
   --
-  -- vim.pack.add { gh 'rafamadriz/friendly-snippets' }
-  -- require('luasnip.loaders.from_vscode').lazy_load()
+  vim.pack.add { gh 'rafamadriz/friendly-snippets' }
+  require('luasnip.loaders.from_vscode').lazy_load()
 
   -- [[ Autocomplete Engine ]]
   vim.pack.add { { src = gh 'saghen/blink.cmp', version = vim.version.range '1.*' } }
@@ -1040,9 +1050,9 @@ do
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug'
-  -- require 'kickstart.plugins.indent_line'
-  -- require 'kickstart.plugins.lint'
-  -- require 'kickstart.plugins.autopairs'
+  require 'kickstart.plugins.indent_line'
+  require 'kickstart.plugins.lint'
+  require 'kickstart.plugins.autopairs'
   -- require 'kickstart.plugins.neo-tree' -- replaced by lua/custom/plugins/neo-tree.lua
 
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.

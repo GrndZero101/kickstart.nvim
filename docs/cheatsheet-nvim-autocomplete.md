@@ -16,6 +16,15 @@ Plugin: `blink.cmp`, preset `default` (Vim-style keys). Insert mode.
 > [!TIP]
 > The first item is preselected, so `<C-y>` right away takes the top match.
 
+## Sources and snippets
+
+The menu mixes LSP items, file paths, snippets and words from the current buffer. Documentation for the selected item opens automatically after a short delay.
+
+Snippets come from `friendly-snippets` (VS Code style) through LuaSnip. Type a trigger such as `def`, `if` or `for`, accept it with `<C-y>`, then fill each placeholder and move between them with `<Tab>` / `<S-Tab>`.
+
+> [!NOTE]
+> Autopairs is on, so typing `(`, `[`, `{` or a quote inserts the closing character too. Typing the closer yourself steps over it.
+
 ## Built-in Vim completion
 
 Works without any plugin. Useful to learn what `blink.cmp` wraps.
