@@ -41,4 +41,4 @@
 > `zz` is the one to build the habit on: after jumping with `n`, `G` or a search, press `zz` to centre the line.
 
 > [!NOTE]
-> Fold method is the default `manual`, so there are no folds until you create them with `zf`. Setting `foldmethod=indent` or a treesitter `foldexpr` would create them automatically. Help: `:help fold.txt`.
+> Folds come from Treesitter (`foldmethod=expr`), so functions, classes and blocks fold automatically in any language with a parser. Files open with every fold open (`foldlevelstart=99`): use `zM` to collapse a file to an outline and `zR` to expand it again. `zf` and `zd` only work with `manual` or `marker` folding. Help: `:help fold.txt`.

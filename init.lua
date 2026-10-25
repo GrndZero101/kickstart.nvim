@@ -112,6 +112,10 @@ do
   --  Experiment for yourself to see if you like it!
   vim.o.relativenumber = true
 
+  -- Open files with all folds open. Treesitter folding is enabled further down;
+  -- without this every function would start folded. See `:help fold-commands`.
+  vim.o.foldlevelstart = 99
+
   -- Enable mouse mode, can be useful for resizing splits for example!
   vim.o.mouse = 'a'
 
@@ -1000,8 +1004,8 @@ do
 
     -- Enable treesitter based folds
     -- For more info on folds see `:help folds`
-    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-    -- vim.wo.foldmethod = 'expr'
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.wo.foldmethod = 'expr'
 
     -- Check if treesitter indentation is available for this language, and if so enable it
     -- in case there is no indent query, the indentexpr will fallback to the vim's built in one
