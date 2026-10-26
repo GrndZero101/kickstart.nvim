@@ -31,17 +31,17 @@ Examples: `diw` delete word, `da"` delete string with quotes, `di(` empty parent
 
 ## Other operators (same grammar)
 
-| Key                | Action                                                  |
-| ------------------ | ------------------------------------------------------- |
-| `c`                | Change (delete and enter insert mode); `cc`, `C`, `ciw` |
-| `y`                | Yank; `yy`, `Y`, `yiw`                                  |
-| `>` / `<`          | Indent / dedent; `>>`, `>ip`                            |
-| `=`                | Auto-indent; `==`, `=ap`                                |
-| `gu` / `gU` / `g~` | Lower / upper / toggle case                             |
-| `gq`               | Format text                                             |
-| `gc`               | Comment (Neovim 0.10+)                                  |
-| `zf`               | Create a fold                                           |
-| `!`                | Filter through a shell command (`!ip` then `sort<CR>`)  |
+| Key                | Action                                                   |
+| ------------------ | -------------------------------------------------------- |
+| `c`                | Change (delete and enter insert mode); `cc`, `C`, `ciw`  |
+| `y`                | Yank; `yy`, `Y`, `yiw`                                   |
+| `>` / `<`          | Indent / dedent; `>>`, `>ip`                             |
+| `=`                | Auto-indent; `==`, `=ap`                                 |
+| `gu` / `gU` / `g~` | Lower / upper / toggle case                              |
+| `gq`               | Format text                                              |
+| `gc` / `gb`        | Line / block comment (see `cheatsheet-nvim-comments.md`) |
+| `zf`               | Create a fold                                            |
+| `!`                | Filter through a shell command (`!ip` then `sort<CR>`)   |
 
 ## Counts and repeat
 

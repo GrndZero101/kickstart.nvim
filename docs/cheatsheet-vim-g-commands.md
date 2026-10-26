@@ -47,13 +47,14 @@
 
 ## Neovim additions
 
-| Key                   | Action                                                                  |
-| --------------------- | ----------------------------------------------------------------------- |
-| `gc{motion}` / `gcc`  | Toggle comment (built in, 0.10+). Also `gc` in visual mode              |
-| `grn` / `gra`         | LSP rename / code action                                                |
-| `grr` / `gri` / `grt` | References / implementation / type definition (Telescope when attached) |
-| `grd`                 | Definition (Telescope, this config)                                     |
-| `gO`                  | Document symbols (outline)                                              |
+| Key                   | Action                                                                        |
+| --------------------- | ----------------------------------------------------------------------------- |
+| `gc{motion}` / `gcc`  | Toggle comment (built in, 0.10+). Also `gc` in visual mode                    |
+| `gb{motion}` / `gbc`  | Toggle block comment `/* */` (this config, see `cheatsheet-nvim-comments.md`) |
+| `grn` / `gra`         | LSP rename / code action                                                      |
+| `grr` / `gri` / `grt` | References / implementation / type definition (Telescope when attached)       |
+| `grd`                 | Definition (Telescope, this config)                                           |
+| `gO`                  | Document symbols (outline)                                                    |
 
 > [!TIP]
 > `gn` combines with operators: `cgn` changes the next match, then `.` repeats on the next one. It's a quick alternative to `:%s`.
