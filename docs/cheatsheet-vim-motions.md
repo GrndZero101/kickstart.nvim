@@ -46,7 +46,7 @@ Motions move the cursor, and also pick the text an operator acts on (`d3w`, `y}`
 | `''`              | Back to the line before the last jump               |
 
 > [!TIP]
-> Line numbers here are **relative**: read the number beside the target line and type `7j` or `12k`. Prefix any motion with a count (`3w`, `2}`), and combine with operators: `d2}`, `y3j`.
+> Line numbers here are **relative**: read the number beside the target line and type `7j` or `12k`. Prefix any motion with a count (`3w`, `2}`), and combine with operators: `d2}`, `y3j`. To see absolute numbers too, press `<leader>tn` (see `cheatsheet-nvim-line-numbers.md`).
 
 > [!NOTE]
 > `f` and `t` are the fastest way to cross a line: `dt)` deletes up to `)`, `cf,` changes through the comma. See `cheatsheet-vim-change.md`. Help: `:help motion.txt`.
